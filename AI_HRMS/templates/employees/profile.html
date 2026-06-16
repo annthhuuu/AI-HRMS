@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>My Profile</h2>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <h4>{{ employee.user.username }}</h4>
+
+        <p>
+            Department:
+            {{ employee.department }}
+        </p>
+
+        <p>
+            Phone:
+            {{ employee.phone }}
+        </p>
+
+        <p>
+            Joining Date:
+            {{ employee.joining_date }}
+        </p>
+
+        <p>
+            Salary:
+            ₹{{ employee.salary }}
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

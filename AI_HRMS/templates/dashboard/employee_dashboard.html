@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Employee Dashboard</h2>
+
+<div class="card mb-3">
+    <div class="card-body">
+
+        <h4>{{ employee.user.username }}</h4>
+
+        <p>
+            Department:
+            {{ employee.department }}
+        </p>
+
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                Attendance Records
+                <h3>{{ attendance_count }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                Leave Requests
+                <h3>{{ leave_count }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                Payroll Records
+                <h3>{{ payroll_count }}</h3>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'profile' %}"
+       class="btn btn-primary">
+        My Profile
+    </a>
+</div>
+
+{% endblock %}
