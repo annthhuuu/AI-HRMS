@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+📊 Reports Dashboard
+
+</h2>
+
+<div class="row g-4">
+
+    <div class="col-md-3">
+
+        <div class="glass-card text-center">
+
+            <h5>Employees</h5>
+
+            <h1>{{ employees }}</h1>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="glass-card text-center">
+
+            <h5>Attendance</h5>
+
+            <h1>{{ attendance }}</h1>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="glass-card text-center">
+
+            <h5>Leaves</h5>
+
+            <h1>{{ leaves }}</h1>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <div class="glass-card text-center">
+
+            <h5>Payroll</h5>
+
+            <h1>{{ payroll }}</h1>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>My Payroll</h2>
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Month</th>
+        <th>Salary</th>
+        <th>Bonus</th>
+        <th>Deduction</th>
+        <th>Net Salary</th>
+    </tr>
+
+    {% for payroll in payrolls %}
+
+    <tr>
+        <td>{{ payroll.month }}</td>
+        <td>{{ payroll.basic_salary }}</td>
+        <td>{{ payroll.bonus }}</td>
+        <td>{{ payroll.deductions }}</td>
+        <td>{{ payroll.net_salary }}</td>
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

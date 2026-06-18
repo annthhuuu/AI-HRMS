@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h3>
+        Edit Department
+    </h3>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="name"
+            value="{{ department.name }}"
+            class="form-control mb-3"
+            required>
+
+        <textarea
+            name="description"
+            class="form-control mb-3">{{ department.description }}</textarea>
+
+        <button
+            class="btn btn-primary">
+
+            Update
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

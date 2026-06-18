@@ -1,7 +1,10 @@
+import matplotlib.pyplot as plt
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 
 from employees.models import Employee
+from departments.models import Department
 from attendance.models import Attendance
 from leaves.models import Leave
 from payroll.models import Payroll
@@ -18,6 +21,8 @@ def admin_dashboard(request):
 
     total_employees = Employee.objects.count()
 
+    department_count = Department.objects.count()
+
     present_today = Attendance.objects.filter(
         date=timezone.now().date()
     ).count()
@@ -30,6 +35,7 @@ def admin_dashboard(request):
 
     context = {
         "total_employees": total_employees,
+        "department_count": department_count,
         "present_today": present_today,
         "pending_leaves": pending_leaves,
         "payroll_records": payroll_records,
@@ -81,4 +87,39 @@ def employee_dashboard(request):
         request,
         "dashboard/employee_dashboard.html",
         context
+    )
+
+
+def attendance_chart(request):
+
+    labels = [
+        "Present",
+        "Absent"
+    ]
+
+    values = [
+        80,
+        20
+    ]
+
+    plt.figure(figsize=(5, 4))
+
+    plt.bar(
+        labels,
+        values
+    )
+
+    plt.title(
+        "Attendance Summary"
+    )
+
+    plt.savefig(
+        "static/chart.png"
+    )
+
+    plt.close()
+
+    return render(
+        request,
+        "dashboard/chart.html"
     )

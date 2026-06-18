@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2>{{ title }}</h2>
+
+</div>
+
+<div class="glass-card">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label class="mb-2">
+            Employee
+        </label>
+
+        <select
+            name="employee"
+            class="form-control mb-3">
+
+            {% for employee in employees %}
+
+            <option
+                value="{{ employee.id }}"
+                {% if attendance and attendance.employee.id == employee.id %}
+                selected
+                {% endif %}>
+
+                {{ employee }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+        <label class="mb-2">
+            Date
+        </label>
+
+        <input
+            type="date"
+            name="date"
+            class="form-control mb-3"
+            value="{% if attendance %}{{ attendance.date|date:'Y-m-d' }}{% endif %}"
+            required>
+
+        <label class="mb-2">
+            Status
+        </label>
+
+        <select
+            name="status"
+            class="form-control mb-4">
+
+            <option
+                value="PRESENT"
+                {% if attendance.status == "PRESENT" %}
+                selected
+                {% endif %}>
+
+                Present
+
+            </option>
+
+            <option
+                value="ABSENT"
+                {% if attendance.status == "ABSENT" %}
+                selected
+                {% endif %}>
+
+                Absent
+
+            </option>
+
+            <option
+                value="LEAVE"
+                {% if attendance.status == "LEAVE" %}
+                selected
+                {% endif %}>
+
+                Leave
+
+            </option>
+
+            <option
+                value="HALF_DAY"
+                {% if attendance.status == "HALF_DAY" %}
+                selected
+                {% endif %}>
+
+                Half Day
+
+            </option>
+
+        </select>
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+
+            Save Attendance
+
+        </button>
+
+        <a
+            href="{% url 'attendance_list' %}"
+            class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

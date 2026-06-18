@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="mb-0">AI Data Entry</h2>
+
+    <span class="badge bg-primary p-2">
+        <i class="bi bi-magic"></i>
+        Quick Action
+    </span>
+
+</div>
+
+{% if message %}
+
+<div class="alert alert-success">
+    {{ message }}
+</div>
+
+{% endif %}
+
+<div class="glass-card">
+
+    {% if user.role == "EMPLOYEE" %}
+
+    <h5 class="mb-3">
+        <i class="bi bi-calendar-plus"></i>
+        Apply for Leave
+    </h5>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="hidden"
+            name="action"
+            value="apply_leave">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+
+                <label class="form-label">Start Date</label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">End Date</label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Reason</label>
+
+                <input
+                    type="text"
+                    name="reason"
+                    class="form-control"
+                    required>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary mt-3">
+            <i class="bi bi-send"></i>
+            Apply
+        </button>
+
+    </form>
+
+    {% elif user.role == "ADMIN" %}
+
+    <h5 class="mb-3">
+        <i class="bi bi-person-plus"></i>
+        Add Employee
+    </h5>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="hidden"
+            name="action"
+            value="add_employee">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+
+                <label class="form-label">Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Password</label>
+
+                <input
+                    type="text"
+                    name="password"
+                    class="form-control"
+                    placeholder="Optional">
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Department</label>
+
+                <select
+                    name="department"
+                    class="form-select">
+
+                    <option value="">No department</option>
+
+                    {% for department in departments %}
+
+                    <option value="{{ department.id }}">
+                        {{ department }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Phone</label>
+
+                <input
+                    type="text"
+                    name="phone"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Joining Date</label>
+
+                <input
+                    type="date"
+                    name="joining_date"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Salary</label>
+
+                <input
+                    type="number"
+                    name="salary"
+                    class="form-control"
+                    min="0"
+                    step="0.01"
+                    required>
+
+            </div>
+
+            <div class="col-md-8">
+
+                <label class="form-label">Address</label>
+
+                <input
+                    type="text"
+                    name="address"
+                    class="form-control"
+                    required>
+
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-primary mt-3">
+            <i class="bi bi-person-plus"></i>
+            Add Employee
+        </button>
+
+    </form>
+
+    {% else %}
+
+    <div class="text-muted">
+        No AI data entry action is available for this role.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Delete Employee</h2>
+
+<div class="glass-card">
+
+    <p>
+        Are you sure you want to delete
+        <strong>{{ employee.user.username }}</strong>?
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button
+            type="submit"
+            class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+            Delete
+        </button>
+
+        <a href="{% url 'employee_list' %}"
+           class="btn btn-outline-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -2,57 +2,71 @@
 
 {% block content %}
 
-<h2>Employee Dashboard</h2>
+<h2 class="mb-4">
 
-<div class="card mb-3">
-    <div class="card-body">
+    Welcome, {{ employee.user.username }} 👋
 
-        <h4>{{ employee.user.username }}</h4>
+</h2>
 
-        <p>
-            Department:
-            {{ employee.department }}
-        </p>
+<div class="glass-card mb-4">
 
-    </div>
-</div>
+    <h4>{{ employee.user.username }}</h4>
 
-<div class="row">
+    <p class="mb-1">
 
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Attendance Records
-                <h3>{{ attendance_count }}</h3>
-            </div>
-        </div>
-    </div>
+        <strong>Department:</strong>
+        {{ employee.department }}
 
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Leave Requests
-                <h3>{{ leave_count }}</h3>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-body">
-                Payroll Records
-                <h3>{{ payroll_count }}</h3>
-            </div>
-        </div>
-    </div>
+    </p>
 
 </div>
 
-<div class="mt-4">
-    <a href="{% url 'profile' %}"
-       class="btn btn-primary">
-        My Profile
-    </a>
+<div class="row g-4">
+
+    <div class="col-md-4">
+
+        <div class="glass-card text-center">
+
+            <h6>📅 Attendance</h6>
+
+            <h2>
+                {{ attendance_count }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="glass-card text-center">
+
+            <h6>🏖 Leave Requests</h6>
+
+            <h2>
+                {{ leave_count }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="glass-card text-center">
+
+            <h6>💰 Payroll Records</h6>
+
+            <h2>
+                {{ payroll_count }}
+            </h2>
+
+        </div>
+
+    </div>
+
 </div>
+
+
 
 {% endblock %}

@@ -11,4 +11,17 @@ urlpatterns = [
 
     path("", include("employees.urls")),
 
+    path("", include("chatbot.urls")),
+
+    path("", include("leaves.urls")),
+
+    path("", include("reports.urls")),
+    
+    path("",include("ai_assistant.urls")),
+
+    path("",include("departments.urls")),
+
+    path("", include("attendance.urls")),
+
+
 ]

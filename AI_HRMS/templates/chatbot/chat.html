@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card shadow">
+
+
+<div class="card-header bg-primary text-white">
+
+    🤖 AI HR Assistant
+
+</div>
+
+<div
+    class="card-body chat-body"
+    style="
+        height:500px;
+        overflow-y:auto;
+        background:#f8f9fa;
+    ">
+
+    {% for chat in history %}
+
+        <div class="text-end mb-2">
+
+            <span class="badge bg-primary p-2">
+
+                {{ chat.user }}
+
+            </span>
+
+        </div>
+
+        <div class="text-start mb-3">
+
+            <span class="badge bg-secondary p-2">
+
+                {{ chat.bot }}
+
+            </span>
+
+        </div>
+
+    {% empty %}
+
+        <p class="text-muted">
+
+            Start chatting with the HR Assistant.
+
+        </p>
+
+    {% endfor %}
+
+</div>
+
+<div class="card-footer">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                name="question"
+                class="form-control"
+                placeholder="Ask something..."
+                required>
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Send
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+</div>
+
+<script>
+
+window.onload = function() {
+
+    let chatBody =
+        document.querySelector(
+            ".chat-body"
+        );
+
+    if(chatBody){
+
+        chatBody.scrollTop =
+            chatBody.scrollHeight;
+
+    }
+
+};
+
+</script>
+
+{% endblock %}
+

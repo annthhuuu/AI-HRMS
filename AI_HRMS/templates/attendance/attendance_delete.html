@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h3>Delete Attendance</h3>
+
+    <p>
+
+        Are you sure you want to delete attendance for
+
+        <strong>
+            {{ attendance.employee }}
+        </strong>
+
+        ?
+
+    </p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <button
+            class="btn btn-danger">
+
+            Delete
+
+        </button>
+
+        <a href="{% url 'attendance_list' %}"
+           class="btn btn-secondary">
+
+            Cancel
+
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

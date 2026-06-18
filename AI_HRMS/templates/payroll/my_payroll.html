@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+
+    Payroll Records
+
+</h2>
+
+<div class="glass-card">
+
+<table class="table">
+
+    <tr>
+
+        <th>Month</th>
+
+        <th>Salary</th>
+
+        <th>Slip</th>
+
+    </tr>
+
+    {% for payroll in payrolls %}
+
+    <tr>
+
+        <td>{{ payroll.month }}</td>
+
+        <td>₹{{ payroll.net_salary }}</td>
+
+        <td>
+
+            <a
+            href="{% url 'salary_slip' payroll.id %}"
+            class="btn btn-primary btn-sm">
+
+                Download PDF
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="mb-0">My Leaves</h2>
+
+    <span class="badge bg-primary p-2">
+        <i class="bi bi-calendar-plus"></i>
+        Apply Leave
+    </span>
+
+</div>
+
+<div class="glass-card mb-4">
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <div class="row g-3 align-items-end">
+
+            <div class="col-md-3">
+
+                <label class="form-label">Start Date</label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label">End Date</label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    class="form-control"
+                    required>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <label class="form-label">Reason</label>
+
+                <input
+                    type="text"
+                    name="reason"
+                    class="form-control"
+                    placeholder="Reason for leave"
+                    required>
+
+            </div>
+
+            <div class="col-md-2">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+                    <i class="bi bi-send"></i>
+                    Apply
+                </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+</div>
+
+<div class="glass-card mb-4">
+
+    <h5 class="mb-3">
+        <i class="bi bi-hourglass-split"></i>
+        Waiting for Approval
+    </h5>
+
+    <table class="table table-bordered mb-0">
+
+        <thead>
+
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for leave in waiting_leaves %}
+
+            <tr>
+                <td>{{ leave.start_date }}</td>
+                <td>{{ leave.end_date }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>{{ leave.status }}</td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="4" class="text-muted text-center">
+                    No leaves waiting for approval.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="glass-card">
+
+    <h5 class="mb-3">
+        <i class="bi bi-calendar-check"></i>
+        Leaves Taken
+    </h5>
+
+    <table class="table table-bordered mb-0">
+
+        <thead>
+
+            <tr>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Reason</th>
+                <th>Status</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for leave in taken_leaves %}
+
+            <tr>
+                <td>{{ leave.start_date }}</td>
+                <td>{{ leave.end_date }}</td>
+                <td>{{ leave.reason }}</td>
+                <td>{{ leave.status }}</td>
+            </tr>
+
+            {% empty %}
+
+            <tr>
+                <td colspan="4" class="text-muted text-center">
+                    No approved leaves yet.
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h3>
+        Add Department
+    </h3>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="name"
+            class="form-control mb-3"
+            placeholder="Department Name"
+            required>
+
+        <textarea
+            name="description"
+            class="form-control mb-3"
+            placeholder="Description">
+        </textarea>
+
+        <button
+            class="btn btn-success">
+
+            Save
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}
