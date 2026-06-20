@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
-
+import matplotlib
+matplotlib.use('Agg')
 from employees.models import Employee
 from departments.models import Department
 from attendance.models import Attendance

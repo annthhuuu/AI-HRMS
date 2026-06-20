@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Delete Payroll Record</h2>
+
+<div class="glass-card">
+
+    <p>Are you sure you want to delete payroll for <strong>{{ payroll.employee.user.username }}</strong> for <strong>{{ payroll.month }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            Confirm Delete
+        </button>
+        <a href="{% url 'payroll_list' %}" class="btn btn-secondary ms-2">
+            Cancel
+        </a>
+    </form>
+
+</div>
+
+{% endblock %}

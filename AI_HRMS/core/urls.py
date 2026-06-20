@@ -22,6 +22,5 @@ urlpatterns = [
     path("",include("departments.urls")),
 
     path("", include("attendance.urls")),
-
-
+    path("", include("payroll.urls")),
 ]
